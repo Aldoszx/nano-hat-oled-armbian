@@ -30,18 +30,18 @@ sudo apt -y install \
   libjpeg-dev \
   libfreetype6-dev \
   git \
-  python \
-  python-dev \
-  python-pip \
-  python-setuptools \
-  python-smbus \
-  python-wheel \
+  python3 \
+  python3-dev \
+  python3-pip \
+  python3-setuptools \
+  python3-smbus \
+  python3-wheel \
   ttf-dejavu \
   zlib1g-dev
 ```
 And install `image` and `pillow` from PIP:
 ```
-sudo pip install \
+sudo pip3 install \
   image \
   pillow
 ```
@@ -49,13 +49,13 @@ sudo pip install \
 Clone from GitHub:
 ```
 cd /tmp
-git clone https://github.com/crouchingtigerhiddenadam/nano-hat-oled-armbian
+git clone https://github.com/pumuckly/nano-hat-oled-armbian
 ```
 
 Run the code (optional):
 ```
 cd /tmp/nano-hat-oled-armbian
-python oled-start.py
+sudo python3 oled-start.py
 ```
 Use `ctrl+c` to terminate.
 
@@ -63,7 +63,7 @@ Use `ctrl+c` to terminate.
 Compile the code:
 ```
 cd /tmp/nano-hat-oled-armbian
-python -O -m py_compile oled-start.py
+python3 -O -m py_compile oled-start.py
 ```
 Make the program directory:
 ```
@@ -82,9 +82,9 @@ Then find the line:
 ```
 exit 0
 ```
-And add `cd /usr/share/nanohatoled` and `/usr/bin/nice /usr/bin/python -n 10 oled-start.pyo &` before `exit 0` so the lines look like this:
+And add `cd /usr/share/nanohatoled` and `/usr/bin/nice /usr/bin/python3 -n 10 oled-start.pyo &` before `exit 0` so the lines look like this:
 ```
-cd /usr/share/nanohatoled && /usr/bin/nice -n 10 /usr/bin/python oled-start.pyo &
+cd /usr/share/nanohatoled && /usr/bin/nice -n 10 /usr/bin/python3 oled-start.pyo &
 exit 0
 ```
 Save these changes by pressing `ctrl+x`, `ctrl+y` and `enter` as prompted at the bottom of the screen.   
@@ -95,12 +95,12 @@ Reboot the system for the changes to take effect.
 Get the latest code:
 ```
 cd /tmp
-git clone https://github.com/crouchingtigerhiddenadam/nano-hat-oled-armbian
+git clone https://github.com/pumuckly/nano-hat-oled-armbian
 ```
 Compile the code:
 ```
 cd /tmp/nano-hat-oled-armbian
-python -O -m py_compile oled-start.py
+python3 -O -m py_compile oled-start.py
 ```
 Remove files from the previous version:
 ```
@@ -168,7 +168,7 @@ Enable the i2c0 either using `armbian-config` or changing `/boot/armbianEnv.txt`
 After reboot, run the following command:
 ```
 sudo wget -O - \
-  https://raw.githubusercontent.com/crouchingtigerhiddenadam/nano-hat-oled-armbian/master/install.sh | \
+  https://raw.githubusercontent.com/pumuckly/nano-hat-oled-armbian/master/install.sh | \
   sudo bash -
 ```
 The command can be used to make a fresh installation or update an existing installation to the latest version.
