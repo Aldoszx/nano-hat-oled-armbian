@@ -137,9 +137,9 @@ try:
         splash.close()
         display_refresh_time = current_time + DISPLAY_OFF_TIMEOUT
       elif cmd_index == 1:
-	key1_cmd_index = 0
-	key2_cmd_index = 2
-	key3_cmd_index = 3
+        key1_cmd_index = 0
+        key2_cmd_index = 2
+        key3_cmd_index = 3
         text1 = time.strftime('%A')
         text2 = time.strftime('%e %b %Y')
         text3 = time.strftime('%X')
@@ -150,14 +150,14 @@ try:
         display_refresh_time = current_time + 1
         write_i2c_image_data(i2c0_bus, image)
       elif cmd_index == 2:
-	key1_cmd_index = 1
-	key2_cmd_index = 0
-	key3_cmd_index = 3
-        text1 = subprocess.check_output("ip a show | grep -E '^\s*inet' | grep -m1 global | awk '{printf \"IPv4: %s\", $2}' | sed 's|/.*||'", shell = True)
-        text2 = subprocess.check_output("df -h | awk '$NF==\"/\"{printf \"Card: %d/%dGB %s\", $3,$2,$5}'", shell = True)
-        text3 = subprocess.check_output("free -m | awk 'NR==2{printf \"RAM:  %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'", shell = True)
-        text4 = subprocess.check_output("top -bn1 | grep load | awk '{printf \"Load: %.2f\", $(NF-2)}'", shell = True)
-        text5 = subprocess.check_output("cat /sys/class/thermal/thermal_zone0/temp | awk '{printf \"Temp: %3.1fc\", $1/1000}'", shell = True)
+        key1_cmd_index = 1
+        key2_cmd_index = 0
+        key3_cmd_index = 3
+        text1 = subprocess.check_output("ip a show | grep -E '^\s*inet' | grep -m1 global | awk '{printf \"IPv4: %s\", $2}' | sed 's|/.*||'", shell=True, text=True)
+        text2 = subprocess.check_output("df -h | awk '$NF==\"/\"{printf \"Card: %d/%dGB %s\", $3,$2,$5}'", shell=True, text=True)
+        text3 = subprocess.check_output("free -m | awk 'NR==2{printf \"RAM:  %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'", shell=True, text=True)
+        text4 = subprocess.check_output("top -bn1 | grep load | awk '{printf \"Load: %.2f\", $(NF-2)}'", shell=True, text=True)
+        text5 = subprocess.check_output("cat /sys/class/thermal/thermal_zone0/temp | awk '{printf \"Temp: %3.1fc\", $1/1000}'", shell=True, text=True)
         image_draw.rectangle((0, 0, 128, 64), 0)
         image_draw.text((6,  2), text1, 1, image_font10)
         image_draw.text((6, 14), text2, 1, image_font10)
@@ -167,9 +167,9 @@ try:
         display_refresh_time = current_time + 2
         write_i2c_image_data(i2c0_bus, image)
       elif cmd_index == 3:
-	key1_cmd_index = 1
-	key2_cmd_index = 2
-	key3_cmd_index = 4
+        key1_cmd_index = 1
+        key2_cmd_index = 2
+        key3_cmd_index = 4
         image_draw.rectangle((0, 0, 128, 64), 0)
         image_draw.text((6, 2), 'Shutdown?', 1, image_font15)
         image_draw.rectangle((4, 22, 124, 34), 1)
@@ -179,9 +179,9 @@ try:
         display_refresh_time = current_time + 5
         write_i2c_image_data(i2c0_bus, image)
       elif cmd_index == 4:
-	key1_cmd_index = 99
-	key2_cmd_index = 4
-	key3_cmd_index = 3
+        key1_cmd_index = 99
+        key2_cmd_index = 4
+        key3_cmd_index = 3
         image_draw.rectangle((0, 0, 128, 64), 0)
         image_draw.text((6, 2), 'Shutdown?', 1, image_font15)
         image_draw.rectangle((4, 36, 124, 48), 1)
