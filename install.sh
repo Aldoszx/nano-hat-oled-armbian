@@ -6,12 +6,12 @@ if [ "$EUID" -ne 0 ]
 fi
 
 # Get dependencies from APT
-apt -y install libjpeg-dev libfreetype6-dev git python python-dev \
-  python-pip python-setuptools python-smbus python-wheel ttf-dejavu \
+apt -y install libjpeg-dev libfreetype6-dev git python3 python3-dev \
+  python3-pip python3-setuptools python3-smbus python3-wheel ttf-dejavu \
   zlib1g-dev
 
 # Install image and pillow
-pip install image pillow
+pip3 install image pillow
 
 # Get the code
 if [ -d "/tmp/nano-hat-oled-armbian" ]
@@ -19,16 +19,16 @@ then
   rm /tmp/nano-hat-oled-armbian -rf
 fi
 cd /tmp
-git clone https://github.com/crouchingtigerhiddenadam/nano-hat-oled-armbian
+git clone https://github.com/pumuckly/nano-hat-oled-armbian
 cd ./nano-hat-oled-armbian
 
 # Compile the code
-python -O -m py_compile oled-start.py
+python3 -O -m py_compile oled-start.py
 
 # Setup rc.local
-if ! grep -Fxq "cd /usr/share/nanohatoled && /usr/bin/nice -n 10 /usr/bin/python oled-start.pyo &" /etc/rc.local
+if ! grep -Fxq "cd /usr/share/nanohatoled && /usr/bin/nice -n 10 /usr/bin/python3 oled-start.pyo &" /etc/rc.local
 then
-  sed -i -e '$i \cd /usr/share/nanohatoled && /usr/bin/nice -n 10 /usr/bin/python oled-start.pyo &' /etc/rc.local
+  sed -i -e '$i \cd /usr/share/nanohatoled && /usr/bin/nice -n 10 /usr/bin/python3 oled-start.pyo &' /etc/rc.local
 fi
 
 # Make the program directory
@@ -42,4 +42,4 @@ mv oled-start.pyo /usr/share/nanohatoled/
 mv splash.png /usr/share/nanohatoled/
 
 # Start OLED
-cd /usr/share/nanohatoled && /usr/bin/nice -n 10 /usr/bin/python oled-start.pyo &
+cd /usr/share/nanohatoled && /usr/bin/nice -n 10 /usr/bin/python3 oled-start.pyo &
